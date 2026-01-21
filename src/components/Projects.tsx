@@ -13,17 +13,17 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'NeuroCommerce',
-      subtitle: 'AI-Powered E-Commerce',
-      description: 'Revolutionary e-commerce platform with neural network-based recommendation engine, real-time inventory quantum management, and blockchain-secured payment processing.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
+      title: 'My weather app',
+      subtitle: 'A WEATHER APP',
+      description: '"Get instant, accurate weather for your exact location with our intuitive weather app, your essential tool for daily planning and safety. See current temperature, hourly forecasts, and extended outlooks, plus crucial details like wind speed, UV index, and air quality.',
+      image: <img src="./" alt="" />,
       category: 'web',
-      technologies: ['React', 'TensorFlow.js', 'Node.js', 'PostgreSQL', 'Stripe', 'WebAssembly'],
-      liveUrl: '#',
+      technologies: ['html', 'java scrpit', 'tailwind css', '', '', 'weather api'],
+      liveUrl: 'https://neyoolo.github.io/srco/',
       githubUrl: '#',
-      stats: { views: '2.5M', likes: '45K', stars: '1.2K' },
+      stats: { views: '', likes: '', stars: '' },
       featured: true,
-      complexity: 95
+      complexity: 30
     },
     {
       id: 2,
