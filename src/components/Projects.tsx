@@ -1,114 +1,141 @@
-import React, { useState, useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
-import { Card, CardContent } from './ui/card';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { ExternalLink, Github, Smartphone, Globe, Zap, Eye, Heart, Star } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import React, { useState, useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { Card, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import {
+  ExternalLink,
+  Github,
+  Smartphone,
+  Globe,
+  Zap,
+  Eye,
+  Heart,
+  Star,
+} from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const Projects = () => {
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const projects = [
     {
       id: 1,
-      title: 'My weather app',
-      subtitle: 'A WEATHER APP',
-      description: '"Get instant, accurate weather for your exact location with our intuitive weather app, your essential tool for daily planning and safety. See current temperature, hourly forecasts, and extended outlooks, plus crucial details like wind speed, UV index, and air quality.',
-      image: <img src="./" alt="" />,
-      category: 'web',
-      technologies: ['html', 'java scrpit', 'tailwind css', '', '', 'weather api'],
-      liveUrl: 'https://neyoolo.github.io/srco/',
-      githubUrl: '#',
-      stats: { views: '', likes: '', stars: '' },
+      title: "My weather app",
+      subtitle: "A WEATHER APP",
+      description:
+        '"Get instant, accurate weather for your exact location with our intuitive weather app, your essential tool for daily planning and safety. See current temperature, hourly forecasts, and extended outlooks, plus crucial details like wind speed, UV index, and air quality.',
+      image: "/images/weather app.PNG",
+      category: "web",
+      technologies: [
+        "html",
+        "java scrpit",
+        "tailwind css",
+        "",
+        "",
+        "weather api",
+      ],
+      liveUrl: "https://neyoolo.github.io/srco/",
+      githubUrl: "#",
+      stats: { views: "", likes: "", stars: "" },
       featured: true,
-      complexity: 30
+      complexity: 30,
     },
     {
       id: 2,
-      title: 'FitXR Nexus',
-      subtitle: 'AR Fitness Universe',
-      description: 'Immersive augmented reality fitness ecosystem with AI personal trainers, biometric sync, and social challenges that gamify health and wellness.',
-      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop',
-      category: 'mobile',
-      technologies: ['React Native', 'ARKit', 'Firebase', 'TensorFlow Lite', 'HealthKit', 'WebRTC'],
-      liveUrl: '#',
-      githubUrl: '#',
-      stats: { views: '1.8M', likes: '32K', stars: '890' },
+      title: "portfolio",
+      subtitle: "My portfolio website",
+      description:
+        "A responsive portfolio website showcasing my projects and skills.",
+      image:
+        "/images/pic.PNG",
+      category: "web",
+      technologies: [
+        "javascript",
+        "react",
+        "html",
+        "tailwind css",
+        " motion.js",
+        "",
+      ],
+      liveUrl: "#",
+      githubUrl: "#",
+      stats: { views: "", likes: "", stars: "" },
       featured: true,
-      complexity: 92
+      complexity: 70,
     },
     {
       id: 3,
-      title: 'CyberDash Analytics',
-      subtitle: 'Quantum Business Intelligence',
-      description: 'Next-generation business intelligence platform powered by quantum algorithms, real-time data fusion, and predictive analytics with holographic visualizations.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-      category: 'web',
-      technologies: ['Vue.js', 'Python', 'Quantum ML', 'D3.js', 'WebGL', 'Redis'],
-      liveUrl: '#',
-      githubUrl: '#',
-      stats: { views: '3.2M', likes: '67K', stars: '1.5K' },
+      title: "My task list",
+      subtitle: "my todo list",
+      description:
+        "A simple and efficient todo list application with drag-and-drop functionality.",
+      image:
+        "images/todo task.PNG",
+      category: "web",
+      technologies: [
+        "java script",
+        "html",
+        "tailwindcss",
+        "",
+        "",
+        "",
+      ],
+      liveUrl: "https://neyoolo.github.io/my-todo-list/",
+      githubUrl: "#",
+      stats: { views: "", likes: "", stars: "" },
       featured: true,
-      complexity: 98
+      complexity: 50,
     },
-    {
-      id: 4,
-      title: 'SocialVerse',
-      subtitle: 'Metaverse Social Platform',
-      description: 'Decentralized social metaverse with Web3 integration, real-time holographic communication, and AI-generated content moderation.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
-      category: 'mobile',
-      technologies: ['Flutter', 'Web3', 'IPFS', 'GraphQL', 'WebRTC', 'Solidity'],
-      liveUrl: '#',
-      githubUrl: '#',
-      stats: { views: '4.1M', likes: '89K', stars: '2.1K' },
-      featured: false,
-      complexity: 94
-    },
-    {
-      id: 5,
-      title: 'QuantumWallet',
-      subtitle: 'Multi-Dimensional Crypto Vault',
-      description: 'Ultra-secure cryptocurrency wallet with quantum encryption, multi-chain support, DeFi yield farming, and biometric authentication.',
-      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop',
-      category: 'web',
-      technologies: ['TypeScript', 'Web3.js', 'Solidity', 'Rust', 'Quantum Encryption', 'WebAuth'],
-      liveUrl: '#',
-      githubUrl: '#',
-      stats: { views: '5.7M', likes: '124K', stars: '3.2K' },
-      featured: false,
-      complexity: 96
-    },
-    {
-      id: 6,
-      title: 'AR Commerce Space',
-      subtitle: 'Spatial Shopping Experience',
-      description: 'Revolutionary augmented reality shopping platform that allows users to visualize products in their space with photorealistic rendering and spatial audio.',
-      image: 'https://images.unsplash.com/photo-1592478411213-6153e4ebc696?w=600&h=400&fit=crop',
-      category: 'mobile',
-      technologies: ['Unity', 'ARCore', 'C#', 'Firebase', 'Spatial Audio', 'WebXR'],
-      liveUrl: '#',
-      githubUrl: '#',
-      stats: { views: '2.9M', likes: '56K', stars: '1.3K' },
-      featured: false,
-      complexity: 90
-    },
+    
+
+
+     
+    
+    //   id: 6,
+    //   title: "AR Commerce Space",
+    //   subtitle: "Spatial Shopping Experience",
+    //   description:
+    //     "Revolutionary augmented reality shopping platform that allows users to visualize products in their space with photorealistic rendering and spatial audio.",
+    //   image:
+    //     "https://images.unsplash.com/photo-1592478411213-6153e4ebc696?w=600&h=400&fit=crop",
+    //   category: "mobile",
+    //   technologies: [
+    //     "Unity",
+    //     "ARCore",
+    //     "C#",
+    //     "Firebase",
+    //     "Spatial Audio",
+    //     "WebXR",
+    //   ],
+    //   liveUrl: "#",
+    //   githubUrl: "#",
+    //   stats: { views: "2.9M", likes: "56K", stars: "1.3K" },
+    //   featured: false,
+    //   complexity: 90,
+    // },
   ];
 
   const filters = [
-    { id: 'all', label: 'All Dimensions', icon: Zap },
-    { id: 'web', label: 'Web Universe', icon: Globe },
-    { id: 'mobile', label: 'Mobile Reality', icon: Smartphone },
+    { id: "all", label: "All Dimensions", icon: Zap },
+    { id: "web", label: "Web Universe", icon: Globe },
+    // { id: "mobile", label: "Mobile Reality", icon: Smartphone },
   ];
 
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
+  const filteredProjects =
+    filter === "all"
+      ? projects
+      : projects.filter((project) => project.category === filter);
 
   // 3D Card Component
-  const ProjectCard3D = ({ project, index }: { project: any, index: number }) => {
+  const ProjectCard3D = ({
+    project,
+    index,
+  }: {
+    project: any;
+    index: number;
+  }) => {
     const ref = useRef<HTMLDivElement>(null);
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -150,7 +177,7 @@ const Projects = () => {
           <Card className="bg-gradient-to-br from-gray-900/90 to-black/90 border-red-600/40 hover:border-red-400 transition-all duration-700 overflow-hidden backdrop-blur-sm transform-gpu">
             {/* Holographic Effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-transparent to-red-800/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
+
             {/* Complexity Indicator */}
             <div className="absolute top-4 right-4 z-20">
               <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-full px-3 py-1 text-xs text-white font-mono glow-effect">
@@ -177,7 +204,8 @@ const Projects = () => {
                 style={{
                   transform: useTransform(
                     [rotateX, rotateY],
-                    ([rX, rY]) => `translateX(${rY * 0.1}px) translateY(${rX * 0.1}px) scale(1.1)`
+                    ([rX, rY]) =>
+                      `translateX(${rY * 0.1}px) translateY(${rX * 0.1}px) scale(1.1)`,
                   ),
                 }}
                 className="absolute inset-0"
@@ -191,9 +219,9 @@ const Projects = () => {
 
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              
+
               {/* Hover Overlay with Actions */}
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500"
                 style={{ transform: "translateZ(20px)" }}
               >
@@ -203,7 +231,11 @@ const Projects = () => {
                     className="bg-red-600 hover:bg-red-700 text-white rounded-full p-4 glow-effect transform hover:scale-110 transition-transform"
                     asChild
                   >
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <ExternalLink size={20} />
                     </a>
                   </Button>
@@ -213,7 +245,11 @@ const Projects = () => {
                     className="border-white text-white hover:bg-white hover:text-black rounded-full p-4 transform hover:scale-110 transition-transform"
                     asChild
                   >
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Github size={20} />
                     </a>
                   </Button>
@@ -237,18 +273,23 @@ const Projects = () => {
               </div>
             </div>
 
-            <CardContent className="p-8 relative" style={{ transform: "translateZ(10px)" }}>
+            <CardContent
+              className="p-8 relative"
+              style={{ transform: "translateZ(10px)" }}
+            >
               <div className="mb-4">
                 <h3 className="text-2xl mb-2 text-white group-hover:text-red-400 transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="text-red-500 font-mono text-sm">{project.subtitle}</p>
+                <p className="text-red-500 font-mono text-sm">
+                  {project.subtitle}
+                </p>
               </div>
-              
+
               <p className="text-gray-300 mb-6 leading-relaxed">
                 {project.description}
               </p>
-              
+
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.technologies.map((tech: string, techIndex: number) => (
                   <motion.div
@@ -288,10 +329,14 @@ const Projects = () => {
 
             {/* Holographic Scanlines */}
             <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-500/20 to-transparent h-full animate-pulse" style={{ 
-                backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(220, 38, 38, 0.1) 2px, rgba(220, 38, 38, 0.1) 4px)',
-                animation: 'scan 3s linear infinite'
-              }} />
+              <div
+                className="absolute inset-0 bg-gradient-to-b from-transparent via-red-500/20 to-transparent h-full animate-pulse"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(220, 38, 38, 0.1) 2px, rgba(220, 38, 38, 0.1) 4px)",
+                  animation: "scan 3s linear infinite",
+                }}
+              />
             </div>
           </Card>
         </motion.div>
@@ -324,17 +369,32 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-32 bg-gradient-to-b from-gray-900 via-black to-gray-900 relative overflow-hidden">
+    <section
+      id="projects"
+      className="py-32 bg-gradient-to-b from-gray-900 via-black to-gray-900 relative overflow-hidden"
+    >
       {/* Complex Background Effects */}
       <div className="absolute inset-0">
         {/* Animated Geometric Patterns */}
         <div className="absolute inset-0 opacity-10">
           <svg width="100%" height="100%" className="absolute inset-0">
             <defs>
-              <pattern id="circuit" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-                <path d="M50,50 L150,50 L150,150 L50,150 Z" fill="none" stroke="#dc2626" strokeWidth="1"/>
-                <circle cx="50" cy="50" r="3" fill="#dc2626"/>
-                <circle cx="150" cy="150" r="3" fill="#dc2626"/>
+              <pattern
+                id="circuit"
+                x="0"
+                y="0"
+                width="200"
+                height="200"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M50,50 L150,50 L150,150 L50,150 Z"
+                  fill="none"
+                  stroke="#dc2626"
+                  strokeWidth="1"
+                />
+                <circle cx="50" cy="50" r="3" fill="#dc2626" />
+                <circle cx="150" cy="150" r="3" fill="#dc2626" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#circuit)" />
@@ -375,10 +435,10 @@ const Projects = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <motion.h2 
+          <motion.h2
             className="text-7xl mb-8 bg-gradient-to-r from-white via-red-300 to-red-500 bg-clip-text text-transparent"
-            animate={{ 
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
             }}
             transition={{ duration: 5, repeat: Infinity }}
           >
@@ -393,8 +453,8 @@ const Projects = () => {
             />
           </div>
           <p className="text-2xl text-gray-300 max-w-4xl mx-auto">
-            A curated collection of revolutionary digital experiences that push the boundaries 
-            of what's possible in the digital realm.
+            A curated collection of revolutionary digital experiences that push
+            the boundaries of what's possible in the digital realm.
           </p>
         </motion.div>
 
@@ -416,8 +476,8 @@ const Projects = () => {
                   variant={filter === filterItem.id ? "default" : "ghost"}
                   className={`flex items-center gap-3 px-8 py-4 rounded-2xl transition-all duration-500 text-lg relative overflow-hidden ${
                     filter === filterItem.id
-                      ? 'bg-gradient-to-r from-red-600 to-red-800 text-white glow-effect'
-                      : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
+                      ? "bg-gradient-to-r from-red-600 to-red-800 text-white glow-effect"
+                      : "text-gray-300 hover:text-white hover:bg-gray-700/50"
                   }`}
                 >
                   {filter === filterItem.id && (
@@ -461,7 +521,9 @@ const Projects = () => {
                   animate={{ x: [-200, 200] }}
                   transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
                 />
-                <span className="relative z-10">Initialize Collaboration Protocol</span>
+                <span className="relative z-10">
+                  Initialize Collaboration Protocol
+                </span>
               </a>
             </Button>
           </div>
@@ -471,8 +533,12 @@ const Projects = () => {
       {/* CSS for additional animations */}
       <style jsx>{`
         @keyframes scan {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100vh); }
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(100vh);
+          }
         }
         .perspective-1000 {
           perspective: 1000px;
