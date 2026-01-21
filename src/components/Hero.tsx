@@ -14,7 +14,7 @@ const Hero = () => {
     "",
     "Full Stack Engineer",
     "UI/UX Designer",
-    "Graphic desingner",
+    "Graphic designer",
   ];
 
   useEffect(() => {
